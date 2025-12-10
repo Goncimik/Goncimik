@@ -77,7 +77,8 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="900">
-    <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg" width="55" style="padding:12px; background-color:#24292f; border-radius:15px;"/>
+    <img <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"width="55"style=" padding:12px; background-color:#161b22;border-radius:12px; 
+filter: brightness(300%);"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
