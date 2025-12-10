@@ -44,8 +44,6 @@ Merhaba!
 
 ## 🛠️ Tools & Technologies
 
-## 🛠️ Tools & Technologies
-
 <table align="center">
 
   <!-- Core Languages -->
@@ -56,7 +54,6 @@ Merhaba!
     <td align="center" width="900">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="55" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="55" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
 
@@ -81,9 +78,8 @@ Merhaba!
   <tr>
     <td align="center" width="900">
       <!-- Git - white background -->
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
-           width="55"
-           style="padding:10px; background-color:#ffffff; border-radius:12px;"/>
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"width="55" style="padding:10px; background-color:#ffffff; border-radius:12px;" />
+
       <!-- VS Code -->
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
            width="55"
