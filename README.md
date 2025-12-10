@@ -74,17 +74,21 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="900">
-<img 
-  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-  width="55"
-  style="
-    padding:12px; 
-    background-color:#161b22; 
-    border-radius:15px;
-  "/>
+      <img 
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        width="55"
+        style="padding:10px; background-color:#ffffff; border-radius:12px;"
+      />
+      <img 
+        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" 
+        width="55"
+        style="padding:10px;"
+      />
+    </td>
   </tr>
 
 </table>
+
 
 
 ---
