@@ -34,11 +34,11 @@ Merhaba!
 
 ## 🎓 Research Interests
 
-- 📟 Çok Kriterli Karar Verme 
-- 🤖 Yapay Zekâ & Makine Öğrenmesi  
-- 📊 Veri Bilimi & Sayısal Analiz  
-- 🧠 Hesaplamalı Optimizasyon  
-- 📚 Akademik modelleme, algoritmik düşünce ve disiplinler arası çalışmalar  
+-  Çok Kriterli Karar Verme 
+-  Yapay Zekâ & Makine Öğrenmesi  
+-  Veri Bilimi & Sayısal Analiz  
+-  Hesaplamalı Optimizasyon  
+-  Akademik modelleme, algoritmik düşünce ve disiplinler arası çalışmalar  
 
 ---
 
@@ -77,8 +77,10 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="900">
-    <img <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg"width="55"style=" padding:12px; background-color:#161b22;border-radius:12px; 
-filter: brightness(300%);"/>
+   <img 
+  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  width="55"
+  style="background-color:#ffffff; padding:10px; border-radius:12px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
@@ -86,16 +88,14 @@ filter: brightness(300%);"/>
 </table>
 
 
-
-
 ---
 
-## 🧩 A Softer Side of Science
+##  A Softer Side of Science
 
-- 💻 Kod satırlarında zihnimin geometriğini bulurum.  
-- ☕ Kahve, derin düşünceler için bana eşlik eden sıcak bir duraktır.  
-- 📚 Akademik alan ise merakımı formüllere, sorularıma yön verir.  
-- 💫 Her çözüm, keşfedilmeyi bekleyen küçük bir evrendir. 
+-  Kod satırlarında zihnimin geometriğini bulurum.  
+-  Kahve, derin düşünceler için bana eşlik eden sıcak bir duraktır.  
+-  Akademik alan ise merakımı formüllere, sorularıma yön verir.  
+-  Her çözüm, keşfedilmeyi bekleyen küçük bir evrendir. 
 ---
 
 <h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
