@@ -77,10 +77,14 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="900">
-   <img 
-  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-  width="55"
-  style="background-color:#ffffff; padding:10px; border-radius:12px;"/>
+<img 
+  src="https://raw.githubusercontent.com/primer/octicons/main/icons/mark-github-16.svg"
+  width="60"
+  style="
+    padding:14px; 
+    background-color:#0d1117; 
+    border-radius:12px;
+    box-shadow:0 0 0 12px #161b22, 0 0 0 24px #0d1117; "/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
