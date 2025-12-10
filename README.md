@@ -28,9 +28,6 @@
 Merhaba!  
 **PhD araştırmacısı**, bilim aşığı ve karmaşık sistemleri anlamlandırmayı seven bir veri bilimcisiyim.  
 Çalışmalarım **MCDM, AI, ML ve matematiksel modelleme** ekseninde ilerliyor.
- 
-
----
 
 ## 🎓 Research Interests
 
@@ -78,15 +75,13 @@ Merhaba!
   <tr>
     <td align="center" width="900">
 <img 
-  src="https://raw.githubusercontent.com/primer/octicons/main/icons/mark-github-16.svg"
-  width="60"
+  src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+  width="55"
   style="
-    padding:14px; 
-    background-color:#0d1117; 
-    border-radius:12px;
-    box-shadow:0 0 0 12px #161b22, 0 0 0 24px #0d1117; "/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="55" style="padding:10px;"/>
-    </td>
+    padding:12px; 
+    background-color:#161b22; 
+    border-radius:15px;
+  "/>
   </tr>
 
 </table>
@@ -100,8 +95,7 @@ Merhaba!
 -  Kahve, derin düşünceler için bana eşlik eden sıcak bir duraktır.  
 -  Akademik alan ise merakımı formüllere, sorularıma yön verir.  
 -  Her çözüm, keşfedilmeyi bekleyen küçük bir evrendir. 
----
-
+ 
 <h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
 
 <p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever. 🤖 </em></p>
