@@ -77,13 +77,8 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="900">
-      <!-- Git - white background -->
-    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"width="55" style="padding:10px; background-color:#ffffff; border-radius:12px;" />
-
-      <!-- VS Code -->
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
-           width="55"
-           style="padding:10px;"/>
+    <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg" width="55" style="padding:12px; background-color:#24292f; border-radius:15px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
 
