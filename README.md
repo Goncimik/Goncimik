@@ -45,17 +45,34 @@ Merhaba!
 ## 🛠️ Tools & Technologies
 
 <table align="center">
+
+  <!-- MCDM -->
+  <tr>
+    <th>MCDM</th>
+  </tr>
+  <tr>
+    <td align="center" width="300">
+      <img src="https://img.shields.io/badge/MCDM-Σ-4A148C?style=for-the-badge&logoColor=white" width="120"/>
+    </td>
+  </tr>
+
+  <!-- Core Languages -->
   <tr>
     <th>Core Languages</th>
-    <th>Data Science & AI</th>
-    <th>Development & Tools</th>
+  </tr>
   <tr>
-    <!-- Core Languages -->
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="50" style="padding:10px;"/>
     </td>
-    <!-- Data Science & AI -->
+  </tr>
+
+  <!-- Data Science & AI -->
+  <tr>
+    <th>Data Science & AI</th>
+  </tr>
+  <tr>
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="50" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" width="50" style="padding:10px;"/>
@@ -63,15 +80,21 @@ Merhaba!
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="50" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="50" style="padding:10px;"/>
     </td>
-    <!-- Development & Tools -->
+  </tr>
+
+  <!-- Development -->
+  <tr>
+    <th>Development & Tools</th>
+  </tr>
+  <tr>
     <td align="center" width="300">
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="50" style="padding:10px; background-color:white; border-radius:8px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="50" style="padding:10px;"/>
     </td>
   </tr>
+
 </table>
+
 
 
 ---
