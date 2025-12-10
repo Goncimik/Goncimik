@@ -44,22 +44,17 @@ Merhaba!
 
 ## 🛠️ Tools & Technologies
 
-## 🛠️ Technical Arsenal
-
 <table align="center">
   <tr>
     <th>Core Languages</th>
     <th>Data Science & AI</th>
     <th>Development & Tools</th>
-  </tr>
-
   <tr>
     <!-- Core Languages -->
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="50" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="50" style="padding:10px;"/>
     </td>
-
     <!-- Data Science & AI -->
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="50" style="padding:10px;"/>
@@ -68,7 +63,6 @@ Merhaba!
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="50" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="50" style="padding:10px;"/>
     </td>
-
     <!-- Development & Tools -->
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="50" style="padding:10px;"/>
