@@ -106,15 +106,9 @@ Merhaba!
 
 ---
 
-<img src="https://camo.githubusercontent.com/62d4ae670e4a9ae074c89ea2c323044c7adb8a9b701b45189c6898a4e5efd4a0/68747470733a2f2f6d65646961312e67697068792e636f6d2f6d656469612f76312e59326c6b505463354d4749334e6a457864544e7a61544977625734794f4852764e336878633342726357396e64476c364e4467316448523365544a364d6d67336547467764435a6c634431324d563970626e526c636d35686246396e61575a66596e6c666157516d593351395a772f78494a4c674f3672697a554a692f67697068792e676966" width="300"/>
+<p align="center">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3I3ZzR4dHRtdXIxZDQ1ZDltM2VjNXdieTB6cWhtbHd4aG5vemE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9xhU5q2Sb1kWY/giphy.gif" width="300"/>
+</p>
 
 
-<!-- Örnek 1: Coding animasyonu -->
-<img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" width="300"/>
-
-<!-- Örnek 2: Woman coding (coder girl havası) -->
-<img src="https://pixabay.com/get/gif-1234567_1280.gif" width="300"/>
-
-<!-- Örnek 3: Soyut / bilimsel data-animation -->
-<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" width="300"/>
 
