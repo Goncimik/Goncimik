@@ -46,15 +46,6 @@ Merhaba!
 
 <table align="center">
 
-  <!-- MCDM -->
-  <tr>
-    <th>MCDM</th>
-  </tr>
-  <tr>
-    <td align="center" width="300">
-      <img src="https://img.shields.io/badge/MCDM-Σ-4A148C?style=for-the-badge&logoColor=white" width="120"/>
-    </td>
-  </tr>
 
   <!-- Core Languages -->
   <tr>
@@ -64,7 +55,6 @@ Merhaba!
     <td align="center" width="300">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="50" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="50" style="padding:10px;"/>
     </td>
   </tr>
 
@@ -88,7 +78,7 @@ Merhaba!
   </tr>
   <tr>
     <td align="center" width="300">
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="50" style="padding:10px; background-color:white; border-radius:8px;"/>
+     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" width="50" style="padding:8px; background-color:#f5f5f5; border-radius:12px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="50" style="padding:10px;"/>
     </td>
   </tr>
