@@ -1,4 +1,4 @@
-<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🌸</h1>
+<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🐾 </h1>
 
 <p align="center">
   <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
@@ -23,10 +23,10 @@
 
 <h2 align="center" style="color:#CDA4DE;">✨ Academigo & Ph.D ✨</h2>
 
-## ✨ About Me
+## 🪶 About Me
 
 Merhaba!  
-**PhD araştırmacısı**, bilim âşığı ve karmaşık sistemleri anlamlandırmayı seven bir veri bilimcisiyim.  
+**PhD araştırmacısı**, bilim aşığı ve karmaşık sistemleri anlamlandırmayı seven bir veri bilimcisiyim.  
 Çalışmalarım **MCDM, AI, ML ve matematiksel modelleme** ekseninde ilerliyor.
  
 
@@ -34,7 +34,7 @@ Merhaba!
 
 ## 🎓 Research Interests
 
-- 🌸 Çok Kriterli Karar Verme (MCDM)  
+- 📟 Çok Kriterli Karar Verme 
 - 🤖 Yapay Zekâ & Makine Öğrenmesi  
 - 📊 Veri Bilimi & Sayısal Analiz  
 - 🧠 Hesaplamalı Optimizasyon  
@@ -45,13 +45,20 @@ Merhaba!
 ## 🛠️ Tools & Technologies
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Python-pastel%20yellow?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Jupyter-pastel%20orange?style=for-the-badge&logo=jupyter&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Pandas-pastel%20purple?style=for-the-badge&logo=pandas&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Numpy-pastel%20blue?style=for-the-badge&logo=numpy&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Scikit--Learn-pastel%20green?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-  <img src="https://img.shields.io/badge/TensorFlow-pastel%20pink?style=for-the-badge&logo=tensorflow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
+  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+  <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MCDM-1A237E?style=for-the-badge&logo=codefactor&logoColor=white"/>
 </p>
+
+---
 
 ---
 
