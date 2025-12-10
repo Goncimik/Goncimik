@@ -8,21 +8,22 @@
 
 <p align="center">
   <a href="https://www.linkedin.com/">
-    <img src="https://img.shields.io/badge/LinkedIn-pastel%20blue?style=for-the-badge&logo=linkedin&logoColor=white"/>
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
   </a>
   <a href="mailto:example@gmail.com">
-    <img src="https://img.shields.io/badge/Email-pastel%20pink?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
   <a href="https://medium.com/">
-    <img src="https://img.shields.io/badge/Medium-pastel%20purple?style=for-the-badge&logo=medium&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white"/>
   </a>
 </p>
 
 ---
 
-<h2 align="center" style="color:#CDA4DE;">✨ A Soft Blend of Academia & Creativity ✨</h2>
 
-## 🌸 About Me
+<h2 align="center" style="color:#CDA4DE;">✨ Academigo & Ph.D ✨</h2>
+
+## ✨ About Me
 
 Merhaba!  
 **PhD araştırmacısı**, bilim âşığı ve karmaşık sistemleri anlamlandırmayı seven bir veri bilimcisiyim.  
@@ -54,20 +55,7 @@ Merhaba!
 
 ---
 
-## 📈 GitHub Statistics (Pastel Theme)
-
-<p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=Goncimik&show_icons=true&theme=calm_pink&hide_title=true"/>
-  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=Goncimik&theme=calm_pink"/>
-</p>
-
-<p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Goncimik&layout=compact&theme=calm_pink"/>
-</p>
-
----
-
-## 🌱 Currently Working On
+## 🧠 Currently Working On
 
 - 🎓 PhD çalışmalarım
 - ⚖️ MCDM  
@@ -77,7 +65,7 @@ Merhaba!
 
 ---
 
-## 💐 A Softer Side of Science
+## 🧩 A Softer Side of Science
 
 - 💻 Kod satırlarında zihnimin geometriğini bulurum.  
 - ☕ Kahve, derin düşünceler için bana eşlik eden sıcak bir duraktır.  
@@ -85,7 +73,7 @@ Merhaba!
 - 💫 Her çözüm, keşfedilmeyi bekleyen küçük bir evrendir. 
 ---
 
-<h2 align="center" style="color:#D8BFD8;">🌸 “Science becomes beautiful when creativity joins the equations.” 🌸</h2>
+<h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
 
 <p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever.</em></p>
 
