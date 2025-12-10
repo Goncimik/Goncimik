@@ -1,4 +1,4 @@
-<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🐾 </h1>
+<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🎓  </h1>
 
 <p align="center">
   <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
@@ -55,7 +55,7 @@ Merhaba!
   <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white"/>
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
   <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MCDM-1A237E?style=for-the-badge&logo=codefactor&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MCDM-λ-311B92?style=for-the-badge&logoColor=white"/>
 </p>
 
 ---
@@ -82,7 +82,7 @@ Merhaba!
 
 <h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
 
-<p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever.</em></p>
+<p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever. 🤖 </em></p>
 
 ---
 
