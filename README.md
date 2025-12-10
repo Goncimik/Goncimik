@@ -44,46 +44,55 @@ Merhaba!
 
 ## 🛠️ Tools & Technologies
 
-<table align="center">
+## 🛠️ Tools & Technologies
 
+<table align="center">
 
   <!-- Core Languages -->
   <tr>
-    <th>Core Languages</th>
+    <th align="center">Core Languages</th>
   </tr>
   <tr>
-    <td align="center" width="300">
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="50" style="padding:10px;"/>
+    <td align="center" width="900">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
 
   <!-- Data Science & AI -->
   <tr>
-    <th>Data Science & AI</th>
+    <th align="center">Data Science & AI</th>
   </tr>
   <tr>
-    <td align="center" width="300">
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="50" style="padding:10px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="50" style="padding:10px;"/>
+    <td align="center" width="900">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="55" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="55" style="padding:10px;"/>
     </td>
   </tr>
 
-  <!-- Development -->
+  <!-- Development & Tools -->
   <tr>
-    <th>Development & Tools</th>
+    <th align="center">Development & Tools</th>
   </tr>
   <tr>
-    <td align="center" width="300">
-     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" width="50" style="padding:8px; background-color:#f5f5f5; border-radius:12px;"/>
-      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="50" style="padding:10px;"/>
+    <td align="center" width="900">
+      <!-- Git - white background -->
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg"
+           width="55"
+           style="padding:10px; background-color:#ffffff; border-radius:12px;"/>
+      <!-- VS Code -->
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg"
+           width="55"
+           style="padding:10px;"/>
     </td>
   </tr>
 
 </table>
+
 
 
 
