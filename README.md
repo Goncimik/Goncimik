@@ -106,9 +106,9 @@ Merhaba!
 
 ---
 
-<p align="center">
-  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3I3ZzR4dHRtdXIxZDQ1ZDltM2VjNXdieTB6cWhtbHd4aG5vemE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9xhU5q2Sb1kWY/giphy.gif" width="300"/>
-</p>
 
+<p align="center">
+  <img src="https://sekerkizcandy.org/wp-content/uploads/2018/07/candycandy.gif" width="300"/>
+</p>
 
 
