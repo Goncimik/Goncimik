@@ -54,8 +54,7 @@ Merhaba!
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/>
   <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white"/>
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
-  <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MCDM-λ-311B92?style=for-the-badge&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MCDM-4A148C?style=for-the-badge&logoColor=white"/>
 </p>
 
 ---
