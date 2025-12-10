@@ -47,14 +47,12 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
     <th align="center" width="300">Data Science & AI</th>
     <th align="center" width="300">Development & Tools</th>
   </tr>
-
   <tr>
     <!-- Core Languages -->
     <td align="center">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="55" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg" width="55" style="padding:10px;"/>
     </td>
-
     <!-- Data Science & AI -->
     <td align="center">
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="55" style="padding:10px;"/>
@@ -63,7 +61,6 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="55" style="padding:10px;"/>
       <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="55" style="padding:10px;"/>
     </td>
-
     <!-- Development & Tools -->
     <td align="center">
       <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
@@ -73,8 +70,6 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
     </td>
   </tr>
 </table>
-
-
 
 ---
 
