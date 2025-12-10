@@ -44,30 +44,41 @@ Merhaba!
 
 ## 🛠️ Tools & Technologies
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
-  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/>
-  <img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MCDM-4A148C?style=for-the-badge&logoColor=white"/>
-</p>
+## 🛠️ Technical Arsenal
 
----
+<table align="center">
+  <tr>
+    <th>Core Languages</th>
+    <th>Data Science & AI</th>
+    <th>Development & Tools</th>
+  </tr>
 
----
+  <tr>
+    <!-- Core Languages -->
+    <td align="center" width="300">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="50" style="padding:10px;"/>
+    </td>
 
-## 🧠 Currently Working On
+    <!-- Data Science & AI -->
+    <td align="center" width="300">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg" width="50" style="padding:10px;"/>
+    </td>
 
-- 🎓 PhD çalışmalarım
-- ⚖️ MCDM  
-- 🤖 AI & ML  
-- 📘 Veri bilimi  
-- 💡 Optimizasyon, modelleme ve algoritmik düşünce  
+    <!-- Development & Tools -->
+    <td align="center" width="300">
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" width="50" style="padding:10px;"/>
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="50" style="padding:10px;"/>
+    </td>
+  </tr>
+</table>
+
 
 ---
 
