@@ -25,17 +25,17 @@
 
 ## 🪶 About Me
 
-Merhaba!  
-**PhD araştırmacısı**, bilim aşığı ve karmaşık sistemleri anlamlandırmayı seven bir veri bilimcisiyim.  
-Çalışmalarım **MCDM, AI, ML ve matematiksel modelleme** ekseninde ilerliyor.
+Hello!
+I am a PhD researcher, a science enthusiast, and a data scientist who enjoys making sense of complex systems.
+My work revolves around MCDM, AI, ML, and mathematical modeling.
 
 ## 🎓 Research Interests
 
--  Çok Kriterli Karar Verme 
--  Yapay Zekâ & Makine Öğrenmesi  
--  Veri Bilimi & Sayısal Analiz  
--  Hesaplamalı Optimizasyon  
--  Akademik modelleme, algoritmik düşünce ve disiplinler arası çalışmalar  
+- Multi-Criteria Decision Making
+- Artificial Intelligence & Machine Learning
+- Data Science & Quantitative Analysis
+- Computational Optimization
+- Academic modeling, algorithmic thinking, and interdisciplinary research
 
 ---
 
@@ -95,10 +95,10 @@ Merhaba!
 
 ##  A Softer Side of Science
 
--  Kod satırlarında zihnimin geometriğini bulurum.  
--  Kahve, derin düşünceler için bana eşlik eden sıcak bir duraktır.  
--  Akademik alan ise merakımı formüllere, sorularıma yön verir.  
--  Her çözüm, keşfedilmeyi bekleyen küçük bir evrendir. 
+- I find the geometry of my mind within lines of code.
+- Coffee accompanies my deep thinking as a warm intellectual ritual.
+- The academic world shapes my curiosity into formulas and meaningful questions.
+- Every solution is a small universe waiting to be discovered.
  
 <h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
 
