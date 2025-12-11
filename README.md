@@ -5,8 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?size=30&duration=2000&pause=1500&color=8e44ad&center=true&vCenter=true&width=650&height=80&font=Roboto+Mono&weight=600&lines=Welcome+to+my+profile.;Thanks+for+visiting.]" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?size=34&duration=1600&pause=700&color=a569bd&center=true&vCenter=true&font=JetBrains+Mono&width=750&lines=Welcome+to+my+profile!;Thanks+for+visiting!" alt="Typing SVG" />
 </p>
+
 
 
 
@@ -92,7 +93,8 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
 <p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever. 🤖 </em></p>
 
 ---
-[![Typing SVG](https://readme-typing-svg.demolab.com?size=28&duration=2000&pause=1000&color=9b59b6&center=true&vCenter=true&width=600&height=70&font=Fira+Code&weight=600&lines=Mutlu+Kodlamalar!;Algoritmalar+bile+biraz+neşeyi+sever.🤖;gogo)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?size=28&duration=2000&pause=1000&color=9b59b6&center=true&vCenter=true&width=600&height=70&font=Fira+Code&weight=600&lines=Mutlu+Kodlamalar!;Algoritmalar+bile+biraz+ne%C5%9Feyi+sever.%F0%9F%A4%96;gogo)](https://git.io/typing-svg)
+
 
 <p align="center">
   <img src="https://sekerkizcandy.org/wp-content/uploads/2018/07/candycandy.gif" width="300"/>
