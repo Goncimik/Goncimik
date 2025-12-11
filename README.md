@@ -90,7 +90,6 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
  
 <h2 align="center" style="color:#D8BFD8;"> “Science becomes beautiful when creativity joins the equations.” </h2>
 
-<p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever. 🤖 </em></p>
 
 ---
 <p align="center">
