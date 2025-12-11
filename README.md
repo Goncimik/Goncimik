@@ -4,7 +4,11 @@
   <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
 </p>
 ---
+---
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?size=28&duration=2000&pause=1000&color=9b59b6&center=true&vCenter=true&width=600&height=70&font=Fira+Code&weight=600&lines=Welcome+to+my+profile!)](https://git.io/typing-svg)
+
+---
 
 ---
 
