@@ -3,12 +3,13 @@
 <p align="center">
   <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
 </p>
----
+
 ---
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?size=28&duration=2000&pause=1000&color=9b59b6&center=true&vCenter=true&width=600&height=70&font=Fira+Code&weight=600&lines=Welcome+to+my+profile!)](https://git.io/typing-svg)
 
 ---
+
 
 ---
 
@@ -91,7 +92,7 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
 <p align="center"><em>Mutlu kodlamalar; algoritmalar bile biraz neşeyi sever. 🤖 </em></p>
 
 ---
-
+[![Typing SVG](https://readme-typing-svg.demolab.com?size=28&duration=2000&pause=1000&color=9b59b6&center=true&vCenter=true&width=600&height=70&font=Fira+Code&weight=600&lines=Mutlu+Kodlamalar!;gogo)](https://git.io/typing-svg)
 
 <p align="center">
   <img src="https://sekerkizcandy.org/wp-content/uploads/2018/07/candycandy.gif" width="300"/>
