@@ -14,21 +14,6 @@
 
 ---
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/hafizegoncacomert/">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:goncacomert@gmail.com">
-    <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
-  <a href="https://medium.com/@goncacomert">
-    <img src="https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white"/>
-  </a>
-</p>
-
----
-
-
 <h2 align="center" style="color:#CDA4DE;">✨ Academigo & Ph.D ✨</h2>
 
 ## 🪶 About Me
