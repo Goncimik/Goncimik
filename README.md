@@ -8,7 +8,7 @@
   <img src="https://readme-typing-svg.demolab.com?size=34&duration=1600&pause=700&color=a569bd&center=true&vCenter=true&font=JetBrains+Mono&width=750&lines=Welcome+to+my+profile!" alt="Typing SVG" />
 </p>
 
-
+---
 <picture>
   <source media="(prefers-color-scheme: dark)"
     srcset="https://raw.githubusercontent.com/<KULLANICIADIN>/<REPO_ADIN>/output/github-contribution-grid-snake-dark.svg" />
