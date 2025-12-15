@@ -13,6 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Make output dir
+        run: mkdir -p output
+
       - name: Generate custom GOGO snake SVG
         run: |
           python << 'PY'
@@ -68,25 +71,28 @@ jobs:
           out.append(f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg">')
           out.append(f'<rect width="100%" height="100%" fill="{BG}"/>')
 
+          # GOGO yazısı (kalın görünmesi için CELL zaten büyük)
           for x,y in letters:
               out.append(svg_rect(x*CELL, y*CELL, LETTER))
 
           d = "M " + " ".join(f"{x:.1f},{y:.1f}" for x,y in path)
 
+          # Mor kare yılan
+          total = len(path) * SPEED
           for i in range(SEGMENTS):
               delay = i * 0.25
               size = CELL * 0.9
               out.append(
                   f'<rect width="{size}" height="{size}" rx="4" fill="{SNAKE}" '
                   f'x="{W/2}" y="{H/2}">'
-                  f'<animateMotion dur="{len(path)*SPEED:.1f}s" begin="{delay}s" '
+                  f'<animateMotion dur="{total:.1f}s" begin="{delay}s" '
                   f'repeatCount="indefinite" path="{d}"/>'
                   f'</rect>'
               )
 
           out.append('</svg>')
 
-          with open("output/gogo-snake.svg","w") as f:
+          with open("output/gogo-snake.svg","w", encoding="utf-8") as f:
               f.write("\n".join(out))
           PY
 
