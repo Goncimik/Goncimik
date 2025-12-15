@@ -9,15 +9,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake SVG
+      - name: Generate snake (eating effect)
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
+
+          snake_color: "#c084fc"          # mor (yılan)
+          color_snake: "#c084fc"
+
+          color_dots:
+            - "#0f172a"                  # boş (arka plan)
+            - "#14532d"                  # sönük (yenmiş gibi)
+            - "#22c55e"                  # yeşil (harf)
+            - "#c084fc"                  # mor (yılanın geçtiği)
+
           outputs: |
             output/goncimik.svg
             output/goncimik-dark.svg?palette=github-dark
 
-      - name: Publish to output branch
+      - name: Publish
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
