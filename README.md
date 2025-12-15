@@ -10,8 +10,8 @@
 
 ---
 
-![github contribution grid snake animation](https://raw.githubusercontent.com/nftknight/nftknight/output/github-contribution-grid-snake-dark.svg#gh-dark-mode-only)
-![github contribution grid snake animation](https://raw.githubusercontent.com/nftknight/nftknight/output/github-contribution-grid-snake.svg#gh-light-mode-only)
+![snake-dark](https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake-dark.svg)
+![snake](https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake.svg)
 
 
 ---
