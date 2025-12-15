@@ -9,71 +9,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Generate snake SVG
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
           outputs: |
-            dist/github-contribution-grid-snake.svg
+            output/goncimik.svg
+            output/goncimik-dark.svg?palette=github-dark
 
-      - name: Add GONCIMIK text (purple, centered)
-        run: |
-          cp dist/github-contribution-grid-snake.svg dist/goncimik.svg
-
-          python - <<'PY'
-          from pathlib import Path
-          import xml.etree.ElementTree as ET
-
-          svg_path = Path("dist/goncimik.svg")
-          tree = ET.parse(svg_path)
-          root = tree.getroot()
-
-          ET.register_namespace("", "http://www.w3.org/2000/svg")
-
-          CELL = 13
-          START_Y = 2
-
-          letters = {
-              "G": [(1,0),(2,0),(3,0),(0,1),(0,2),(0,3),(3,2),(3,3),(1,4),(2,4),(3,4)],
-              "O": [(1,0),(2,0),(0,1),(3,1),(0,2),(3,2),(0,3),(3,3),(1,4),(2,4)],
-              "N": [(0,0),(0,1),(0,2),(0,3),(0,4),(3,0),(3,1),(3,2),(3,3),(3,4),(1,1),(2,2)],
-              "C": [(1,0),(2,0),(0,1),(0,2),(0,3),(1,4),(2,4)],
-              "I": [(1,0),(1,1),(1,2),(1,3),(1,4)],
-              "M": [(0,0),(0,1),(0,2),(0,3),(0,4),(4,0),(4,1),(4,2),(4,3),(4,4),(2,1),(1,2),(3,2)],
-              "K": [(0,0),(0,1),(0,2),(0,3),(0,4),(3,0),(2,1),(1,2),(2,3),(3,4)]
-          }
-
-          text = "GONCIMIK"
-          total_width = len(text) * 6
-          START_X = (53 - total_width) // 2
-
-          x = START_X
-          for ch in text:
-              for dx, dy in letters[ch]:
-                  rect = ET.Element(
-                      "rect",
-                      {
-                          "x": str((x + dx) * CELL),
-                          "y": str((START_Y + dy) * CELL),
-                          "width": str(CELL),
-                          "height": str(CELL),
-                          "fill": "#c084fc",
-                          "rx": "3",
-                          "ry": "3"
-                      }
-                  )
-                  root.append(rect)
-              x += 6
-
-          tree.write(svg_path, encoding="utf-8", xml_declaration=True)
-          PY
-
-      - name: Publish
+      - name: Publish to output branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: output
           publish_branch: output
