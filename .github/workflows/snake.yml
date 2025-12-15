@@ -10,15 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake svgs
+      - name: Generate snake
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
           outputs: |
-            dist/base-snake.svg
-            dist/base-snake-dark.svg?palette=github-dark
+            dist/snake.svg
+            dist/snake-dark.svg?palette=github-dark
 
-      - name: Add GOGO pixel blocks
+      - name: Add GOGO
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -29,39 +29,27 @@ jobs:
             "O": ["01110","10001","10001","10001","10001","10001","01110"],
           }
 
-          def parse_cell(svg):
-            m = re.search(r'<rect[^>]*width="(\d+)"[^>]*height="(\d+)"', svg)
-            return (int(m.group(1)), int(m.group(2))) if m else (10, 10)
-
-          def add_gogo(src, dst):
+          def add(src, dst):
             svg = Path(src).read_text()
-            cw, ch = parse_cell(svg)
-            step = cw + 2
-
-            col = 18
-            row = 2
+            step = 12
+            col, row = 18, 2
             rects = []
-
             for letter in "GOGO":
               for r, line in enumerate(FONT[letter]):
                 for c, v in enumerate(line):
                   if v == "1":
                     x = (col + c) * step
                     y = (row + r) * step
-                    rects.append(
-                      f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" fill="#00c853" opacity="0.85"/>'
-                    )
+                    rects.append(f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853"/>')
               col += 7
-
-            layer = "<g>" + "".join(rects) + "</g>"
-            out = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, 1)
+            out = re.sub(r'(<svg[^>]*>)', r'\1<g>' + ''.join(rects) + '</g>', svg, 1)
             Path(dst).write_text(out)
 
-          add_gogo("dist/base-snake.svg", "dist/gogo-snake.svg")
-          add_gogo("dist/base-snake-dark.svg", "dist/gogo-snake-dark.svg")
+          add("dist/snake.svg", "dist/gogo-snake.svg")
+          add("dist/snake-dark.svg", "dist/gogo-snake-dark.svg")
           PY
 
-      - name: Publish to output branch
+      - name: Publish
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
