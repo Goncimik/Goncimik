@@ -10,90 +10,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Make output dir
-        run: mkdir -p output
-
-      - name: Generate custom GOGO snake SVG
+      - name: Create SVG
         run: |
+          mkdir -p output
           python << 'PY'
-          from math import sin, cos, pi
+          import math
 
           W, H = 1200, 260
           CELL = 22
-          SNAKE = "#c084fc"
-          LETTER = "#22c55e"
           BG = "#020617"
+          LETTER = "#22c55e"
+          SNAKE = "#c084fc"
 
-          SPEED = 0.22
-          SEGMENTS = 7
+          def rect(x,y,c):
+              return f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="5" fill="{c}"/>'
 
-          def letter_G(x0, y0):
-              pts = []
+          letters = []
+          for i in range(4):
+              ox = 200 + i*150
               for x in range(5):
-                  pts.append((x0+x, y0))
-                  pts.append((x0+x, y0+4))
+                  letters += [(ox+x*CELL,80),(ox+x*CELL,80+4*CELL)]
               for y in range(5):
-                  pts.append((x0, y0+y))
-              pts += [(x0+3, y0+2), (x0+4, y0+2)]
-              return pts
-
-          def letter_O(x0, y0):
-              pts = []
-              for x in range(5):
-                  pts.append((x0+x, y0))
-                  pts.append((x0+x, y0+4))
-              for y in range(5):
-                  pts.append((x0, y0+y))
-                  pts.append((x0+4, y0+y))
-              return pts
-
-          letters = (
-              letter_G(10,3) +
-              letter_O(18,3) +
-              letter_G(26,3) +
-              letter_O(34,3)
-          )
+                  letters += [(ox,80+y*CELL),(ox+4*CELL,80+y*CELL)]
 
           path = []
           for t in range(300):
-              x = 2*pi*t/300
-              px = 700 + 250*cos(x)
-              py = 130 + 70*sin(x)
-              path.append((px, py))
+              a = 2*math.pi*t/300
+              path.append((600+300*math.cos(a),130+60*math.sin(a)))
 
-          def svg_rect(x,y,c):
-              return f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="4" fill="{c}"/>'
+          svg = []
+          svg.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}">')
+          svg.append(f'<rect width="100%" height="100%" fill="{BG}"/>')
 
-          out = []
-          out.append(f'<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg">')
-          out.append(f'<rect width="100%" height="100%" fill="{BG}"/>')
-
-          # GOGO yazısı (kalın görünmesi için CELL zaten büyük)
           for x,y in letters:
-              out.append(svg_rect(x*CELL, y*CELL, LETTER))
+              svg.append(rect(x,y,LETTER))
 
-          d = "M " + " ".join(f"{x:.1f},{y:.1f}" for x,y in path)
+          d = "M " + " ".join(f"{x},{y}" for x,y in path)
 
-          # Mor kare yılan
-          total = len(path) * SPEED
-          for i in range(SEGMENTS):
-              delay = i * 0.25
-              size = CELL * 0.9
-              out.append(
-                  f'<rect width="{size}" height="{size}" rx="4" fill="{SNAKE}" '
-                  f'x="{W/2}" y="{H/2}">'
-                  f'<animateMotion dur="{total:.1f}s" begin="{delay}s" '
-                  f'repeatCount="indefinite" path="{d}"/>'
+          for i in range(7):
+              svg.append(
+                  f'<rect width="{CELL}" height="{CELL}" rx="5" fill="{SNAKE}">'
+                  f'<animateMotion dur="18s" begin="{i*0.4}s" repeatCount="indefinite" path="{d}"/>'
                   f'</rect>'
               )
 
-          out.append('</svg>')
+          svg.append("</svg>")
 
-          with open("output/gogo-snake.svg","w", encoding="utf-8") as f:
-              f.write("\n".join(out))
+          open("output/gogo-snake.svg","w").write("\n".join(svg))
           PY
 
       - name: Publish
