@@ -1,34 +1,149 @@
-name: Generate Snake with GONCIMIK
+name: Custom GOGO Snake (eating)
 
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake (eating effect)
-        uses: Platane/snk@v3
-        with:
-          github_user_name: Goncimik
+      - name: Checkout
+        uses: actions/checkout@v4
 
-          snake_color: "#c084fc"
+      - name: Generate custom SVG (GOGO + purple snake + 7 segments)
+        run: |
+          mkdir -p output
+          python - << 'PY'
+          from pathlib import Path
 
-          color_dots: |
-            #0f172a
-            #14532d
-            #22c55e
-            #c084fc
+          # ====== SETTINGS ======
+          TEXT = "GOGO"              # burada GONCIMIK de yapabilirsin
+          SNAKE = "#c084fc"          # lila yılan
+          BG = "#0b1220"             # arkaplan
+          GRID = "#111827"           # grid kareleri
+          DOT = "#22c55e"            # yazı kareleri (yeşil)
+          SEGMENTS = 7               # 4 değil 7 segment
+          SPEED = 0.12               # hız
+          TITLE_SIZE = 28            # üstteki yazı boyutu
+          # =======================
 
-          outputs: |
-            output/goncimik.svg
-            output/goncimik-dark.svg?palette=github-dark
+          COLS, ROWS = 53, 7
+          CELL = 14
+          GAP = 4
+          PAD = 24
 
-      - name: Publish
+          W = PAD*2 + COLS*(CELL+GAP) - GAP
+          H = PAD*2 + ROWS*(CELL+GAP) - GAP + 44
+
+          # 6x7 font (grid'e oturuyor)
+          font = {
+            "G": ["011110","110011","110000","110111","110011","110011","011110"],
+            "O": ["011110","110011","110011","110011","110011","110011","011110"],
+            "N": ["110011","111011","111011","110111","110111","110011","110011"],
+            "C": ["011110","110011","110000","110000","110000","110011","011110"],
+            "I": ["111111","001100","001100","001100","001100","001100","111111"],
+            "M": ["110011","111111","111111","110011","110011","110011","110011"],
+            "K": ["110011","110110","111100","111000","111100","110110","110011"],
+          }
+
+          glyph_w, glyph_h, space = 6, 7, 2
+          text_cols = len(TEXT)*glyph_w + (len(TEXT)-1)*space
+          start_col = (COLS - text_cols)//2
+          start_row = 0
+
+          def xy(col, row):
+            x = PAD + col*(CELL+GAP)
+            y = PAD + row*(CELL+GAP) + 44
+            return x, y
+
+          # Collect pixels for text
+          pixels = []
+          xcol = start_col
+          for ch in TEXT.upper():
+            g = font.get(ch)
+            if not g:
+              xcol += glyph_w + space
+              continue
+            for r in range(glyph_h):
+              for c in range(glyph_w):
+                if g[r][c] == "1":
+                  col, row = xcol + c, start_row + r
+                  if 0 <= col < COLS and 0 <= row < ROWS:
+                    pixels.append((col, row))
+            xcol += glyph_w + space
+
+          # Path: go from right-bottom -> eat text pixels -> go right-top
+          pixels_sorted = sorted(pixels, key=lambda t: (t[0], t[1]))
+          path = [(COLS-1, ROWS-1)] + pixels_sorted + [(COLS-1, 0)]
+
+          dt = SPEED
+          total = max(6.0, dt*len(path) + 2.0)
+
+          def motion_path():
+            d = []
+            x0, y0 = xy(*path[0])
+            d.append(f"M{x0+CELL/2:.1f},{y0+CELL/2:.1f}")
+            for (c,r) in path[1:]:
+              x, y = xy(c,r)
+              d.append(f"L{x+CELL/2:.1f},{y+CELL/2:.1f}")
+            return " ".join(d)
+
+          d = motion_path()
+
+          out = []
+          out.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
+          out.append(f'<rect width="100%" height="100%" fill="{BG}"/>')
+
+          # Title
+          out.append(
+            f'<text x="{W/2:.1f}" y="30" text-anchor="middle" '
+            f'font-family="JetBrains Mono, monospace" font-size="{TITLE_SIZE}" '
+            f'fill="{SNAKE}" font-weight="800">{TEXT}</text>'
+          )
+
+          # Grid
+          for col in range(COLS):
+            for row in range(ROWS):
+              x,y = xy(col,row)
+              out.append(f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="3" fill="{GRID}"/>')
+
+          # Text pixels that will be "eaten" (fade to 0)
+          t = dt
+          for (col,row) in pixels:
+            x,y = xy(col,row)
+            out.append(
+              f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="3" '
+              f'fill="{DOT}" stroke="{DOT}" stroke-width="2" opacity="1">'
+              f'<animate attributeName="opacity" values="1;1;0" keyTimes="0;0.7;1" begin="{t:.2f}s" dur="0.18s" fill="freeze"/>'
+              f'</rect>'
+            )
+            t += dt
+
+          # Snake segments (7)
+          r = CELL*0.38
+          for i in range(SEGMENTS):
+            delay = i*0.18
+            out.append(f'<circle r="{r:.2f}" fill="{SNAKE}">')
+            out.append(f'  <animateMotion dur="{total:.2f}s" begin="{delay:.2f}s" repeatCount="indefinite" path="{d}"/>')
+            out.append(f'</circle>')
+
+          out.append('</svg>')
+
+          svg = "\n".join(out)
+          Path("output/gogo-snake.svg").write_text(svg, encoding="utf-8")
+          Path("output/gogo-snake-dark.svg").write_text(svg, encoding="utf-8")
+          print("OK: output/gogo-snake.svg")
+          PY
+
+      - name: Publish to output branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: output
           publish_branch: output
+
