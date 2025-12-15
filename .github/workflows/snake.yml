@@ -1,24 +1,14 @@
-name: Generate Snake Animation
+name: TEST ACTION
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 2 * * *"
-
-permissions:
-  contents: write
 
 jobs:
-  snake:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Generate snake SVG
-        uses: Platane/snk@v3
-        with:
-          github_user_name: Goncimik
-          outputs: |
-            dist/github-contribution-grid-snake.svg
+      - run: echo "ACTION WORKS"
+
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       - name: Publish to output branch
