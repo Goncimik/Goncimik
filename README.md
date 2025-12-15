@@ -12,12 +12,13 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake-dark.svg" />
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik-dark.svg" />
   <source media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik.svg" />
   <img alt="snake"
-    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake-dark.svg" />
+    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik.svg" />
 </picture>
+
 
   
 
