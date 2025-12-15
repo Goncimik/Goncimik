@@ -2,15 +2,23 @@ name: Generate Snake with GOGO
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
+
+concurrency:
+  group: snake-gogo
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1) Snake'i READ-ONLY dist içine üret
+      - uses: actions/checkout@v4
+
+      # 1) Snake'i dist içine üret (read-only olabilir)
       - name: Generate snake
         uses: Platane/snk@v3
         with:
@@ -19,14 +27,15 @@ jobs:
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
 
-      # 2) Writable klasör oluştur
+      # 2) Writable klasör
       - name: Prepare writable output
         run: |
+          rm -rf out
           mkdir -p out
           cp dist/snake.svg out/base.svg
           cp dist/snake-dark.svg out/base-dark.svg
 
-      # 3) GOGO ekle (SADECE out/ içine yazar)
+      # 3) GOGO ekle (out/ içine yazar)
       - name: Add GOGO
         run: |
           python - <<'PY'
@@ -39,8 +48,9 @@ jobs:
           }
 
           def add(src, dst):
-            svg = Path(src).read_text()
-            cell = 12
+            svg = Path(src).read_text(encoding="utf-8")
+
+            cell = 12      # grid ölçeği
             col, row = 18, 2
             rects = []
 
@@ -51,19 +61,21 @@ jobs:
                     x = (col + c) * cell
                     y = (row + r) * cell
                     rects.append(
-                      f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853" opacity="0.85"/>'
+                      f'<rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="#22c55e" opacity="0.9"/>'
                     )
               col += 7
 
-            layer = "<g>" + "".join(rects) + "</g>"
-            out = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, 1)
-            Path(dst).write_text(out)
+            # katmanı, <svg ...> açılışından hemen sonra ekle
+            layer = '<g id="gogo-layer">' + "".join(rects) + "</g>"
+            out = re.sub(r'(<svg[^>]*>)', r'\1\n' + layer, svg, count=1, flags=re.I)
+
+            Path(dst).write_text(out, encoding="utf-8")
 
           add("out/base.svg", "out/gogo-snake.svg")
           add("out/base-dark.svg", "out/gogo-snake-dark.svg")
           PY
 
-      # 4) SADECE out/ publish et
+      # 4) out/ publish
       - name: Publish
         uses: crazy-max/ghaction-github-pages@v4
         with:
