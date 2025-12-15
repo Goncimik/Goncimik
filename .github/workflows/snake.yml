@@ -2,8 +2,6 @@ name: Generate Snake with GOGO
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 2 * * *"
 
 permissions:
   contents: write
@@ -12,15 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake svgs
+      # 1) Snake'i READ-ONLY dist içine üret
+      - name: Generate snake
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
           outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-contribution-grid-snake.svg
+            dist/snake.svg
+            dist/snake-dark.svg?palette=github-dark
 
-      - name: Add GOGO pixel blocks behind snake
+      # 2) Writable klasör oluştur
+      - name: Prepare writable output
+        run: |
+          mkdir -p out
+          cp dist/snake.svg out/base.svg
+          cp dist/snake-dark.svg out/base-dark.svg
+
+      # 3) GOGO ekle (SADECE out/ içine yazar)
+      - name: Add GOGO
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -31,47 +38,36 @@ jobs:
             "O": ["01110","10001","10001","10001","10001","10001","01110"],
           }
 
-          def parse_cell(svg: str):
-            m = re.search(r'<rect[^>]*width="(\d+)"[^>]*height="(\d+)"', svg)
-            return (int(m.group(1)), int(m.group(2))) if m else (10, 10)
-
-          def add_gogo(path, fill="#00c853", start_col=18, start_row=2, gap=2):
-            p = Path(path)
-            svg = p.read_text(encoding="utf-8")
-            cw, ch = parse_cell(svg)
-            step_x = cw + gap
-            step_y = ch + gap
-
-            word = "GOGO"
-            letter_w, letter_h, spacing = 5, 7, 2
+          def add(src, dst):
+            svg = Path(src).read_text()
+            cell = 12
+            col, row = 18, 2
             rects = []
-            col = start_col
 
-            for letter in word:
-              pat = FONT[letter]
-              for r in range(letter_h):
-                for c in range(letter_w):
-                  if pat[r][c] == "1":
-                    x = (col + c) * step_x
-                    y = (start_row + r) * step_y
+            for letter in "GOGO":
+              for r, line in enumerate(FONT[letter]):
+                for c, v in enumerate(line):
+                  if v == "1":
+                    x = (col + c) * cell
+                    y = (row + r) * cell
                     rects.append(
-                      f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="2" ry="2" fill="{fill}" opacity="0.85"/>'
+                      f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853" opacity="0.85"/>'
                     )
-              col += letter_w + spacing
+              col += 7
 
-            layer = "\n".join(rects)
-            inject = f'\n<g id="gogo-pixels">{layer}</g>\n'
-            svg2 = re.sub(r'(<svg\\b[^>]*>)', r'\\1' + inject, svg, count=1, flags=re.I)
-            p.write_text(svg2, encoding="utf-8")
+            layer = "<g>" + "".join(rects) + "</g>"
+            out = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, 1)
+            Path(dst).write_text(out)
 
-          add_gogo("dist/github-contribution-grid-snake-dark.svg")
-          add_gogo("dist/github-contribution-grid-snake.svg")
+          add("out/base.svg", "out/gogo-snake.svg")
+          add("out/base-dark.svg", "out/gogo-snake-dark.svg")
           PY
 
-      - name: Publish to output branch
+      # 4) SADECE out/ publish et
+      - name: Publish
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
