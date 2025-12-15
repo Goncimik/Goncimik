@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake
+      - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
@@ -18,7 +18,10 @@ jobs:
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
 
-      - name: Add GOGO
+      - name: Make dist writable
+        run: chmod -R u+rwX dist
+
+      - name: Add GOGO text
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -29,31 +32,36 @@ jobs:
             "O": ["01110","10001","10001","10001","10001","10001","01110"],
           }
 
-          def add(src, dst):
+          def add_gogo(src, dst):
             svg = Path(src).read_text()
-            step = 12
+            cell = 12
             col, row = 18, 2
             rects = []
+
             for letter in "GOGO":
               for r, line in enumerate(FONT[letter]):
                 for c, v in enumerate(line):
                   if v == "1":
-                    x = (col + c) * step
-                    y = (row + r) * step
-                    rects.append(f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853"/>')
+                    x = (col + c) * cell
+                    y = (row + r) * cell
+                    rects.append(
+                      f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853" opacity="0.85"/>'
+                    )
               col += 7
-            out = re.sub(r'(<svg[^>]*>)', r'\1<g>' + ''.join(rects) + '</g>', svg, 1)
+
+            gogo_layer = "<g>" + "".join(rects) + "</g>"
+            out = re.sub(r'(<svg[^>]*>)', r'\1' + gogo_layer, svg, 1)
             Path(dst).write_text(out)
 
-          add("dist/snake.svg", "dist/gogo-snake.svg")
-          add("dist/snake-dark.svg", "dist/gogo-snake-dark.svg")
+          add_gogo("dist/snake.svg", "dist/gogo-snake.svg")
+          add_gogo("dist/snake-dark.svg", "dist/gogo-snake-dark.svg")
           PY
 
-      - name: Publish
+      - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
