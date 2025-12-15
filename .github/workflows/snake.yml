@@ -10,7 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake SVGs
+      # 1) Snake'i READ-ONLY dist içine üret
+      - name: Generate snake
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
@@ -18,10 +19,15 @@ jobs:
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
 
-      - name: Make dist writable
-        run: chmod -R u+rwX dist
+      # 2) Writable klasör oluştur
+      - name: Prepare writable output
+        run: |
+          mkdir -p out
+          cp dist/snake.svg out/base.svg
+          cp dist/snake-dark.svg out/base-dark.svg
 
-      - name: Add GOGO text
+      # 3) GOGO ekle (SADECE out/ içine yazar)
+      - name: Add GOGO
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -32,7 +38,7 @@ jobs:
             "O": ["01110","10001","10001","10001","10001","10001","01110"],
           }
 
-          def add_gogo(src, dst):
+          def add(src, dst):
             svg = Path(src).read_text()
             cell = 12
             col, row = 18, 2
@@ -49,19 +55,21 @@ jobs:
                     )
               col += 7
 
-            gogo_layer = "<g>" + "".join(rects) + "</g>"
-            out = re.sub(r'(<svg[^>]*>)', r'\1' + gogo_layer, svg, 1)
+            layer = "<g>" + "".join(rects) + "</g>"
+            out = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, 1)
             Path(dst).write_text(out)
 
-          add_gogo("dist/snake.svg", "dist/gogo-snake.svg")
-          add_gogo("dist/snake-dark.svg", "dist/gogo-snake-dark.svg")
+          add("out/base.svg", "out/gogo-snake.svg")
+          add("out/base-dark.svg", "out/gogo-snake-dark.svg")
           PY
 
-      - name: Publish to output branch
+      # 4) SADECE out/ publish et
+      - name: Publish
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
