@@ -10,14 +10,9 @@
 
 ---
 
-<picture>
-  <source media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
-  <img alt="GOGO snake animation"
-    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
-</picture>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
+</p>
 
 
 
