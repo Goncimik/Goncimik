@@ -12,9 +12,11 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake-dark.svg" />
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
   <img alt="snake"
-    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake-dark.svg" />
+    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake-dark.svg" />
 </picture>
 
 
