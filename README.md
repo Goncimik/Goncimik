@@ -1,28 +1,28 @@
-<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🎓  </h1>
+<h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🎓 </h1>
 
 <p align="center">
   <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?size=34&duration=1600&pause=700&color=a569bd&center=true&vCenter=true&font=JetBrains+Mono&width=750&lines=Welcome+to+my+profile!" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?size=34&duration=1600&pause=700&color=a569bd&center=true&vCenter=true&font=JetBrains+Mono&width=750&lines=Welcome+to+my+profile!" />
 </p>
 
 ---
+
 <picture>
   <source media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/<KULLANICIADIN>/<REPO_ADIN>/output/github-contribution-grid-snake-dark.svg" />
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/<KULLANICIADIN>/<REPO_ADIN>/output/github-contribution-grid-snake.svg" />
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake.svg" />
   <img alt="github contribution grid snake animation"
-    src="https://raw.githubusercontent.com/<KULLANICIADIN>/<REPO_ADIN>/output/github-contribution-grid-snake.svg" />
+    src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/github-contribution-grid-snake.svg" />
 </picture>
-
-
 
 ---
 
 <h2 align="center" style="color:#CDA4DE;">✨ Academigo & Ph.D ✨</h2>
+
 
 ## 🪶 About Me
 
