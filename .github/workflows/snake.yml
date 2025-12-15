@@ -14,14 +14,13 @@ jobs:
         with:
           github_user_name: Goncimik
 
-          snake_color: "#c084fc"          # mor (yılan)
-          color_snake: "#c084fc"
+          snake_color: "#c084fc"
 
-          color_dots:
-            - "#0f172a"                  # boş (arka plan)
-            - "#14532d"                  # sönük (yenmiş gibi)
-            - "#22c55e"                  # yeşil (harf)
-            - "#c084fc"                  # mor (yılanın geçtiği)
+          color_dots: |
+            #0f172a
+            #14532d
+            #22c55e
+            #c084fc
 
           outputs: |
             output/goncimik.svg
