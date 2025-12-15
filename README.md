@@ -19,10 +19,6 @@
 </p>
 
 
-
-  
-
-
 ---
 
 <h2 align="center" style="color:#CDA4DE;">✨ Academigo & Ph.D ✨</h2>
