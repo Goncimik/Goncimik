@@ -1,75 +1,50 @@
-name: Generate Snake with GOGO
+- name: Add GONCIMIK text
+  run: |
+    python - <<'PY'
+    from pathlib import Path
+    import xml.etree.ElementTree as ET
 
-on:
-  workflow_dispatch:
+    svg_path = Path("dist/github-contribution-grid-snake.svg")
 
-permissions:
-  contents: write
+    tree = ET.parse(svg_path)
+    root = tree.getroot()
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      # 1) Snake'i READ-ONLY dist içine üret
-      - name: Generate snake
-        uses: Platane/snk@v3
-        with:
-          github_user_name: Goncimik
-          outputs: |
-            dist/snake.svg
-            dist/snake-dark.svg?palette=github-dark
+    NS = {"svg": "http://www.w3.org/2000/svg"}
+    ET.register_namespace("", NS["svg"])
 
-      # 2) Writable klasör oluştur
-      - name: Prepare writable output
-        run: |
-          mkdir -p out
-          cp dist/snake.svg out/base.svg
-          cp dist/snake-dark.svg out/base-dark.svg
+    CELL = 13
+    START_X = 14
+    START_Y = 2
 
-      # 3) GOGO ekle (SADECE out/ içine yazar)
-      - name: Add GOGO
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
+    letters = {
+        "G": [(1,0),(2,0),(3,0),(0,1),(0,2),(0,3),(3,2),(3,3),(1,4),(2,4),(3,4)],
+        "O": [(1,0),(2,0),(0,1),(3,1),(0,2),(3,2),(0,3),(3,3),(1,4),(2,4)],
+        "N": [(0,0),(0,1),(0,2),(0,3),(0,4),(3,0),(3,1),(3,2),(3,3),(3,4),(1,1),(2,2)],
+        "C": [(1,0),(2,0),(0,1),(0,2),(0,3),(1,4),(2,4)],
+        "I": [(1,0),(1,1),(1,2),(1,3),(1,4)],
+        "M": [(0,0),(0,1),(0,2),(0,3),(0,4),(4,0),(4,1),(4,2),(4,3),(4,4),(2,1),(1,2),(3,2)],
+        "K": [(0,0),(0,1),(0,2),(0,3),(0,4),(3,0),(2,1),(1,2),(2,3),(3,4)]
+    }
 
-          FONT = {
-            "G": ["01110","10001","10000","10111","10001","10001","01110"],
-            "O": ["01110","10001","10001","10001","10001","10001","01110"],
-          }
+    x = START_X
+    for ch in "GONCIMIK":
+        for dx, dy in letters[ch]:
+            rect = ET.Element(
+                "rect",
+                {
+                    "x": str((x + dx) * CELL),
+                    "y": str((START_Y + dy) * CELL),
+                    "width": str(CELL),
+                    "height": str(CELL),
+                    "fill": "#c084fc",
+                    "rx": "3",
+                    "ry": "3"
+                }
+            )
+            root.append(rect)
+        x += 6
 
-          def add(src, dst):
-            svg = Path(src).read_text()
-            cell = 12
-            col, row = 18, 2
-            rects = []
-
-            for letter in "GOGO":
-              for r, line in enumerate(FONT[letter]):
-                for c, v in enumerate(line):
-                  if v == "1":
-                    x = (col + c) * cell
-                    y = (row + r) * cell
-                    rects.append(
-                      f'<rect x="{x}" y="{y}" width="10" height="10" fill="#00c853" opacity="0.85"/>'
-                    )
-              col += 7
-
-            layer = "<g>" + "".join(rects) + "</g>"
-            out = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, 1)
-            Path(dst).write_text(out)
-
-          add("out/base.svg", "out/gogo-snake.svg")
-          add("out/base-dark.svg", "out/gogo-snake-dark.svg")
-          PY
-
-      # 4) SADECE out/ publish et
-      - name: Publish
-        uses: crazy-max/ghaction-github-pages@v4
-        with:
-          target_branch: output
-          build_dir: out
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    tree.write(svg_path)
+    PY
 
 
