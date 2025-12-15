@@ -9,9 +9,6 @@
 </p>
 
 ---
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg?v=2">
-</p>
 
 
 ---
