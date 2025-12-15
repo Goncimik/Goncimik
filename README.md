@@ -11,7 +11,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg" />
+  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/gogo-snake.svg?v=1" />
 </p>
 
 
