@@ -1,4 +1,4 @@
-name: Generate Snake Animation
+name: Generate Snake with GOGO
 
 on:
   workflow_dispatch:
@@ -9,16 +9,64 @@ permissions:
   contents: write
 
 jobs:
-  snake:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake SVG
+      - name: Generate snake svgs
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
           outputs: |
-            dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake.svg
+
+      - name: Add GOGO pixel blocks behind snake
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          FONT = {
+            "G": ["01110","10001","10000","10111","10001","10001","01110"],
+            "O": ["01110","10001","10001","10001","10001","10001","01110"],
+          }
+
+          def parse_cell(svg: str):
+            m = re.search(r'<rect[^>]*width="(\d+)"[^>]*height="(\d+)"', svg)
+            return (int(m.group(1)), int(m.group(2))) if m else (10, 10)
+
+          def add_gogo(path, fill="#00c853", start_col=18, start_row=2, gap=2):
+            p = Path(path)
+            svg = p.read_text(encoding="utf-8")
+            cw, ch = parse_cell(svg)
+            step_x = cw + gap
+            step_y = ch + gap
+
+            word = "GOGO"
+            letter_w, letter_h, spacing = 5, 7, 2
+            rects = []
+            col = start_col
+
+            for letter in word:
+              pat = FONT[letter]
+              for r in range(letter_h):
+                for c in range(letter_w):
+                  if pat[r][c] == "1":
+                    x = (col + c) * step_x
+                    y = (start_row + r) * step_y
+                    rects.append(
+                      f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="2" ry="2" fill="{fill}" opacity="0.85"/>'
+                    )
+              col += letter_w + spacing
+
+            layer = "\n".join(rects)
+            inject = f'\n<g id="gogo-pixels">{layer}</g>\n'
+            svg2 = re.sub(r'(<svg\\b[^>]*>)', r'\\1' + inject, svg, count=1, flags=re.I)
+            p.write_text(svg2, encoding="utf-8")
+
+          add_gogo("dist/github-contribution-grid-snake-dark.svg")
+          add_gogo("dist/github-contribution-grid-snake.svg")
+          PY
 
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
@@ -27,4 +75,3 @@ jobs:
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
