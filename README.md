@@ -11,12 +11,13 @@
 ---
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)"
-      srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik-dark.svg" />
-    <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik.svg" />
-  </picture>
+  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik.svg" />
 </p>
+<picture>
+  <source media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik-dark.svg" />
+  <img src="https://raw.githubusercontent.com/Goncimik/Goncimik/output/goncimik.svg" />
+</picture>
 
 
 ---
