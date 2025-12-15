@@ -1,8 +1,8 @@
-name: Generate Snake (GOGO)
+name: Generate snake
 
 on:
   schedule:
-    - cron: "0 2 * * *"   # Her gün 02:00 UTC (istersen değiştir)
+    - cron: "0 2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -15,43 +15,10 @@ jobs:
       - name: Generate snake svgs
         uses: Platane/snk@v3
         with:
-          github_user_name: ${{ github.repository_owner }}
+          github_user_name: Goncimik
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-
-      - name: Add "GOGO" watermark into SVGs
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-
-          def add_gogo(svg_path: Path, text="GOGO"):
-            s = svg_path.read_text(encoding="utf-8")
-
-            # SVG boyutlarını yakala (yoksa da sorun değil)
-            # Metni ortalayacak basit bir <text> ekleyeceğiz.
-            gogo = r'''
-            <g id="gogo-watermark" opacity="0.12">
-              <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle"
-                    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial"
-                    font-size="64" font-weight="800" fill="#9aa4b2">
-                ''' + text + r'''
-              </text>
-            </g>
-            '''
-
-            # Grid/arka planın üstüne ama yılanın altına koymak için:
-            # En garanti yöntem: ilk <svg ...> sonrası hemen eklemek.
-            s2 = re.sub(r'(<svg\b[^>]*>)', r'\1\n' + gogo, s, count=1, flags=re.I)
-            svg_path.write_text(s2, encoding="utf-8")
-
-          for p in [
-            Path("dist/github-contribution-grid-snake.svg"),
-            Path("dist/github-contribution-grid-snake-dark.svg"),
-          ]:
-            add_gogo(p, "GOGO")
-          PY
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
@@ -60,3 +27,4 @@ jobs:
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
