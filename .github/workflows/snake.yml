@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # Snake üret: DOTS (yemler) dahil tamamen lila/mor palet
       - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
