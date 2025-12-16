@@ -188,3 +188,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def dim_bright_tiles(root):
+    for el in root.iter(_svg_ns("rect")):
+        fill = el.get("fill")
+        if fill and fill.lower() in ("#ffffff", "#f8fafc", "#f1f5f9"):
+            el.set("opacity", "0.35")
