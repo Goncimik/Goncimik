@@ -8,12 +8,20 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: snake-svg
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      # 1) Snake üret (renkleri burada ver)
-      - name: Generate snake
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1) Snake üret
+      - name: Generate snake SVGs
         uses: Platane/snk@v3
         with:
           github_user_name: Goncimik
@@ -21,111 +29,30 @@ jobs:
             dist/snake.svg?color_snake=#a569bd&color_dots=#0f172a,#1b2a22,#2f7d4a,#6d28d9,#c084fc
             dist/snake-dark.svg?palette=github-dark&color_snake=#a569bd&color_dots=#0b1020,#12301f,#1f7a46,#7c3aed,#c084fc
 
-      # 2) Writable klasör
-      - name: Prepare writable output
+      # 2) Post-process (GOGO + gradient + slow)
+      - name: Post-process SVGs
         run: |
-          mkdir -p out
-          cp dist/snake.svg out/base.svg
-          cp dist/snake-dark.svg out/base-dark.svg
+          python scripts/postprocess_snake.py \
+            --in dist/snake.svg \
+            --out out/gogo-snake.svg \
+            --label "GOGO" \
+            --speed-mult 2.8
 
-      # 3) GOGO yaz + gradient lila + yavaşlat (dur sürelerini büyüt)
-      - name: Add GOGO + Gradient + Slow
+          python scripts/postprocess_snake.py \
+            --in dist/snake-dark.svg \
+            --out out/gogo-snake-dark.svg \
+            --label "GOGO" \
+            --speed-mult 2.8 \
+            --dark
+
+      # 3) (Opsiyonel) çıktıyı kontrol için listele
+      - name: List output files
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
+          ls -la out
+          head -n 30 out/gogo-snake.svg
 
-          # --- Ayarlar ---
-          SPEED_MULT = 2.8   # büyüt => daha yavaş (2.0-4.0 iyi)
-          CELL = 12          # grid ölçeği
-          START_COL, START_ROW = 18, 2  # GOGO konumu (sağa/sola kaydırmak için col)
-          DOT_FILL = "#22c55e"
-          DOT_OPACITY = 0.95
-
-          FONT = {
-            "G": ["01110","10001","10000","10111","10001","10001","01110"],
-            "O": ["01110","10001","10001","10001","10001","10001","01110"],
-          }
-
-          def inject_gradient(svg: str) -> str:
-            # Snake rect’lerinin çoğu "fill" ile gelir; gradient'i defs'e ekleyip snake fill’lerini url(#lilaGrad) yapacağız.
-            if "id=\"lilaGrad\"" in svg:
-              return svg
-
-            defs = """
-            <defs>
-              <linearGradient id="lilaGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"  stop-color="#a569bd"/>
-                <stop offset="50%" stop-color="#c084fc"/>
-                <stop offset="100%" stop-color="#6d28d9"/>
-              </linearGradient>
-
-              <!-- küçük bir parıltı: uzun hissi (trail gibi) -->
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="1.2" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            """.strip()
-
-            # defs'i svg başına koy
-            svg = re.sub(r'(<svg[^>]*>)', r'\1' + defs, svg, count=1)
-
-            # Snake rengi: color_snake zaten lila; burada gradient'e zorlayalım.
-            # Güvenli yaklaşım: #a569bd olan fill’leri gradient yap
-            svg = svg.replace('fill="#a569bd"', 'fill="url(#lilaGrad)" filter="url(#glow)"')
-
-            return svg
-
-          def slow_down(svg: str) -> str:
-            # SVG içindeki dur="0.3s" gibi süreleri çarp
-            def repl(m):
-              val = float(m.group(1))
-              newv = val * SPEED_MULT
-              return f'dur="{newv:.3f}s"'
-            svg = re.sub(r'dur="([0-9]*\.?[0-9]+)s"', repl, svg)
-            return svg
-
-          def add_gogo_layer(svg: str) -> str:
-            col = START_COL
-            row = START_ROW
-            rects = []
-
-            for letter in "GOGO":
-              for r, line in enumerate(FONT[letter]):
-                for c, v in enumerate(line):
-                  if v == "1":
-                    x = (col + c) * CELL
-                    y = (row + r) * CELL
-                    rects.append(
-                      f'<rect x="{x}" y="{y}" width="10" height="10" rx="2" ry="2" fill="{DOT_FILL}" opacity="{DOT_OPACITY}"/>'
-                    )
-              col += 7
-
-            layer = '<g id="gogoText">' + "".join(rects) + "</g>"
-            svg = re.sub(r'(<svg[^>]*>)', r'\1' + layer, svg, count=1)
-
-            # üstte küçük başlık
-            title = '<text x="50%" y="18" text-anchor="middle" font-size="18" font-weight="700" fill="#c084fc">GOGO</text>'
-            svg = re.sub(r'(<svg[^>]*>)', r'\1' + title, svg, count=1)
-            return svg
-
-          def process(src, dst):
-            svg = Path(src).read_text(encoding="utf-8")
-            svg = add_gogo_layer(svg)
-            svg = inject_gradient(svg)
-            svg = slow_down(svg)
-            Path(dst).write_text(svg, encoding="utf-8")
-
-          process("out/base.svg", "out/gogo-snake.svg")
-          process("out/base-dark.svg", "out/gogo-snake-dark.svg")
-          PY
-
-      # 4) Publish (output branch)
-      - name: Publish
+      # 4) Publish output branch
+      - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
