@@ -6,10 +6,20 @@ import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-
 FONT = {
     "G": ["01110","10001","10000","10111","10001","10001","01110"],
     "O": ["01110","10001","10001","10001","10001","10001","01110"],}
+
+
+PURPLE_PALETTE = {
+    "light": {
+        "dot":  "#a855f7",  
+        "glow": "#c084fc",  
+    },
+    "dark": {
+        "dot":  "#c084fc", 
+        "glow": "#e9d5ff", 
+    },}
 
 def _svg_ns(tag: str) -> str:
     return f"{{http://www.w3.org/2000/svg}}{tag}"
@@ -24,24 +34,25 @@ def ensure_defs(root: ET.Element) -> ET.Element:
     defs = root.find(_svg_ns("defs"))
     if defs is None:
         defs = ET.Element(_svg_ns("defs"))
-
         root.insert(0, defs)
     return defs
 
 def add_gradient_and_glow(defs: ET.Element) -> None:
-  
     existing = {el.get("id") for el in defs.iter() if el.get("id")}
+
     if "lilaGrad" not in existing:
         lg = ET.SubElement(defs, _svg_ns("linearGradient"), {
-            "id": "lilaGrad", "x1": "0", "y1": "0", "x2": "1", "y2": "0"})
-        
+            "id": "lilaGrad", "x1": "0", "y1": "0", "x2": "1", "y2": "0"
+        })
         ET.SubElement(lg, _svg_ns("stop"), {"offset": "0%", "stop-color": "#a569bd"})
         ET.SubElement(lg, _svg_ns("stop"), {"offset": "50%", "stop-color": "#c084fc"})
         ET.SubElement(lg, _svg_ns("stop"), {"offset": "100%", "stop-color": "#6d28d9"})
 
     if "glow" not in existing:
         flt = ET.SubElement(defs, _svg_ns("filter"), {"id": "glow"})
-        ET.SubElement(flt, _svg_ns("feGaussianBlur"), {"stdDeviation": "1.2", "result": "blur"})
+        ET.SubElement(flt, _svg_ns("feGaussianBlur"), {
+            "stdDeviation": "1.6",
+            "result": "blur"})
         merge = ET.SubElement(flt, _svg_ns("feMerge"))
         ET.SubElement(merge, _svg_ns("feMergeNode"), {"in": "blur"})
         ET.SubElement(merge, _svg_ns("feMergeNode"), {"in": "SourceGraphic"})
@@ -59,36 +70,19 @@ def slow_down_animations(svg_text: str, speed_mult: float) -> str:
         return f'dur="{val * speed_mult:.3f}s"'
     return re.sub(r'dur="([0-9]*\.?[0-9]+)s"', repl, svg_text)
 
-
-
-    w = parse_len(root.get("width"), 960.0)
-
-    fill = "#c084fc" if dark else "#6d28d9"
-
-    t = ET.SubElement(root, _svg_ns("text"), {
-        "x": str(w / 2),
-        "y": "24",
-        "text-anchor": "middle",
-        "font-size": "18",
-        "font-weight": "700",
-        "font-family": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial",
-        "letter-spacing": "1.5",
-        "fill": fill,
-        "opacity": "0.95"})
-    t.text = label
-
 def add_pixel_gogo(root: ET.Element, label: str, dark: bool) -> None:
     cell = 12
     dot_size = 10
     rx = 2
 
-    dot_fill = "#22c55e" if dark else "#16a34a"
+    palette = PURPLE_PALETTE["dark" if dark else "light"]
+    dot_fill = palette["dot"]
     dot_opacity = "0.95"
 
-
+    
     w = parse_len(root.get("width"), 960.0)
-    approx_cols = len(label) * 7
-    start_col = max(2, int((w / cell - approx_cols) / 2))  
+    approx_cols = len(label) * 7 
+    start_col = max(2, int((w / cell - approx_cols) / 2))
     start_row = 2
 
     g = ET.SubElement(root, _svg_ns("g"), {"id": "gogoText", "opacity": "1.0"})
@@ -112,7 +106,9 @@ def add_pixel_gogo(root: ET.Element, label: str, dark: bool) -> None:
                         "rx": str(rx),
                         "ry": str(rx),
                         "fill": dot_fill,
-                        "opacity": dot_opacity})
+                        "opacity": dot_opacity,
+
+                        "filter": "url(#glow)",})
         col += 7
 
 def main():
@@ -129,23 +125,18 @@ def main():
 
     svg_text = inp.read_text(encoding="utf-8")
 
-
     ET.register_namespace("", "http://www.w3.org/2000/svg")
     root = ET.fromstring(svg_text)
-
 
     defs = ensure_defs(root)
     add_gradient_and_glow(defs)
 
-
     apply_snake_style(root)
 
-    add_label_text(root, args.label, dark=args.dark)
+
     add_pixel_gogo(root, args.label, dark=args.dark)
 
-
     xml_out = ET.tostring(root, encoding="unicode")
-
     xml_out = slow_down_animations(xml_out, args.speed_mult)
 
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -154,3 +145,4 @@ def main():
 if __name__ == "__main__":
     main()
 
+  
