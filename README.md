@@ -5,9 +5,6 @@
 
 
 
-<p align="center">
-  <em>PhD Researcher • MCDM Specialist • Data Science Explorer • AI & Machine Learning Enthusiast</em>
-</p>
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?size=34&duration=1600&pause=700&color=a569bd&center=true&vCenter=true&font=JetBrains+Mono&width=750&lines=Welcome+to+my+profile!" />
