@@ -73,42 +73,15 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
 ---
 
 <!-- GOGO | FEATURED PROJECTS -->
-
 <h2>GOGO | Featured Projects</h2>
 
-<table>
-<tr>
-<td width="50%" bgcolor="#101C35">
+<div align="center">
+  <a href="./projects/decision-science/README.md"><img src="./assets/featured/decision-science.svg" width="49%"></a>
+  <a href="./projects/artificial-intelligence/README.md"><img src="./assets/featured/artificial-intelligence.svg" width="49%"></a>
+  <a href="./projects/data-analytics/README.md"><img src="./assets/featured/data-analytics.svg" width="49%"></a>
+  <a href="./projects/research-projects/README.md"><img src="./assets/featured/research-projects.svg" width="49%"></a>
+</div>
 
-### 🩵 Decision Science
-MCDM & Decision Models
-
-</td>
-<td width="50%" bgcolor="#101C35">
-
-### 💜 Artificial Intelligence
-AI & Machine Learning
-
-</td>
-</tr>
-
-<tr>
-<td width="50%" bgcolor="#101C35">
-
-### 💙 Data Analytics
-Statistical Analysis
-
-</td>
-<td width="50%" bgcolor="#101C35">
-
-### 💜 Research Projects
-Scientific Applications
-
-</td>
-</tr>
-</table>
-
-<!-- END FEATURED PROJECTS -->
 
 ##  A Softer Side of Science
 
