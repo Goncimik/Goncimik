@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="./gogo-banner.png" alt="Gogo GitHub Banner" width="100%">
+</p>
+
 <h1 align="center" style="color:#DDA0DD;"> Hello, I'm Goncimik 🎓 </h1>
 
 <p align="center">
