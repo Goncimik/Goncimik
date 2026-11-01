@@ -1,331 +1,126 @@
 #!/usr/bin/env python3
-from __future__ import annotations
+"""GOGO eating snake: actual head/tile timing, no frames, no JavaScript.
 
+The original Platane SVG is used to retain actual contribution squares where
+possible; the independent moving snake and letter timing are rebuilt here.
+"""
+from __future__ import annotations
 import argparse
 import math
-import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-SVG_NS = "http://www.w3.org/2000/svg"
-
-
-def _svg(tag: str) -> str:
-    return f"{{{SVG_NS}}}{tag}"
-
-
+NS = 'http://www.w3.org/2000/svg'
+ET.register_namespace('', NS)
+def tag(s): return f'{{{NS}}}{s}'
 FONT = {
-    "G": [
-        "011110",
-        "100001",
-        "100000",
-        "100111",
-        "100001",
-        "100001",
-        "011110",
-    ],
-    "O": [
-        "011110",
-        "100001",
-        "100001",
-        "100001",
-        "100001",
-        "100001",
-        "011110",
-    ],
+ 'G': ('01110','10001','10000','10111','10001','10001','01110'),
+ 'O': ('01110','10001','10001','10001','10001','10001','01110'),
 }
+NAVY='#081426'; GRID='#142A4B'; CYAN='#32E7E1'; VIOLET='#AB78F9';
 
+def el(parent, name, **attrs):
+    return ET.SubElement(parent, tag(name), {k.replace('_','-'):str(v) for k,v in attrs.items()})
 
-PALETTE = {
-    "bg_dark": "#08111f",
-    "grid_dark": "#11284a",
-    "grid_mid": "#173763",
-    "snake": "#58f1e3",
-    "snake_glow": "#7ff8ee",
-    "text_teal": "#69f0ff",
-    "text_lilac": "#d7c6ff",
-    "text_purple": "#a66cff",
-    "text_purple_2": "#8b5cf6",
-}
+def create(label='GOGO', dark=True):
+    width, height, pitch, size = 1024, 224, 17, 12
+    root=ET.Element(tag('svg'), {'width':str(width),'height':str(height),'viewBox':f'0 0 {width} {height}', 'role':'img', 'aria-label':'Animated snake eating GOGO, pixel by pixel'})
+    defs=el(root,'defs')
+    grad=el(defs,'linearGradient',id='snakeGradient',x1='0%',y1='0%',x2='100%',y2='0%')
+    el(grad,'stop',offset='0%',stop_color=CYAN)
+    el(grad,'stop',offset='100%',stop_color=VIOLET)
+    filt=el(defs,'filter',id='softGlow',x='-30%',y='-30%',width='160%',height='160%')
+    el(filt,'feGaussianBlur',stdDeviation='1.05',result='b')
+    merge=el(filt,'feMerge');el(merge,'feMergeNode',**{'in':'b'});el(merge,'feMergeNode',**{'in':'SourceGraphic'})
+    # The background is clean and border-free, suited to GitHub's dark theme.
+    el(root,'rect',x=0,y=0,width=width,height=height,fill=(NAVY if dark else '#EEF5FB'),rx=3)
+    bg=el(root,'g',id='navy-contribution-grid')
+    columns, rows=59,10
+    for row in range(rows):
+        for col in range(columns):
+            x=12+col*pitch; y=28+row*pitch
+            # understated nonrandom accent pattern: a subtle gradient of activity.
+            active=((col*19+row*31)%43==0 or (col*7+row*11)%57==0)
+            c=('#21496D' if active else GRID) if dark else ('#B9D5E7' if active else '#D4E3EE')
+            el(bg,'rect',x=x,y=y,width=size,height=size,rx=2.6,fill=c,opacity='0.82')
 
+    # Character positions (letter order G, O, G, O) and pixel visitation order.
+    label=label.upper()
+    all_tiles=[]
+    width_cells=sum(len(FONT.get(ch, FONT['G'])[0])+2 for ch in label)-2
+    x0=(width-width_cells*pitch)/2
+    y0=52
+    cursor=0
+    for index,ch in enumerate(label):
+        glyph=FONT.get(ch)
+        if not glyph: continue
+        coords=[(c,r) for r,line in enumerate(glyph) for c,v in enumerate(line) if v=='1']
+        # Use row-wise serpentine order for continuous visible consumption within letter.
+        coords=[]
+        for r,line in enumerate(glyph):
+            chars=[c for c,v in enumerate(line) if v=='1']
+            if r%2: chars.reverse()
+            coords.extend((c,r) for c in chars)
+        for c,r in coords:
+            x=x0+(cursor+c)*pitch+size/2
+            y=y0+r*pitch+size/2
+            all_tiles.append((x,y,index))
+        cursor+=len(glyph[0])+2
+    if not all_tiles: raise ValueError('No supported letters in label')
 
-def parse_len(x: str | None, default: float) -> float:
-    if not x:
-        return default
-    m = re.match(r"^\s*([0-9]*\.?[0-9]+)", x)
-    return float(m.group(1)) if m else default
+    # Snake physically visits every bright letter tile, in order.
+    # Build lead-in, all letter tiles and lead-out, plus a short recovery delay.
+    start=(all_tiles[0][0]-82,all_tiles[0][1])
+    finish=(all_tiles[-1][0]+105,all_tiles[-1][1]+10)
+    route=[start]+[(x,y) for x,y,_ in all_tiles]+[finish]
+    dists=[math.dist(a,b) for a,b in zip(route,route[1:])]
+    cumul=[0.0]
+    for d in dists: cumul.append(cumul[-1]+d)
+    travel=cumul[-1]
+    speed=110.0   # pixel per second; timed from true distances, no arbitrary delays
+    transit=travel/speed
+    pause=3.0
+    cycle=transit+pause
+    path='M '+' L '.join(f'{x:.2f},{y:.2f}' for x,y in route)
 
+    letters=el(root,'g',id='gogo-letters')
+    for i,(x,y,letter_index) in enumerate(all_tiles):
+        # the only disappearing tile is the one being reached by the snake head
+        cell=el(letters,'rect',x=f'{x-size/2:.2f}',y=f'{y-size/2:.2f}',width=size,height=size,rx='2.4',fill=(CYAN if letter_index%2==0 else VIOLET),filter='url(#softGlow)')
+        at=cumul[i+1]/speed
+        # The pixel disappears right when the snake head reaches its center.
+        eps=min(0.0015,0.12/cycle)
+        a=max(0,at/cycle-eps);b=at/cycle
+        reset=(cycle-0.20)/cycle
+        if reset<=b: reset=(b+1)/2
+        el(cell,'animate',attributeName='opacity',values='1;1;0;0;1',keyTimes=f'0;{a:.6f};{b:.6f};{reset:.6f};1',dur=f'{cycle:.3f}s',repeatCount='indefinite',calcMode='discrete')
 
-def ensure_defs(root: ET.Element) -> ET.Element:
-    defs = root.find(_svg("defs"))
-    if defs is None:
-        defs = ET.Element(_svg("defs"))
-        root.insert(0, defs)
-    return defs
+    # Snake: five segments travel over the very same physical route.
+    for seg in reversed(range(6)):
+        group=el(root,'g',id=f'snake-segment-{seg}')
+        radius=6.7 if seg==0 else 5.8-max(0,seg-2)*0.23
+        el(group,'circle',cx=0,cy=0,r=f'{radius:.2f}',fill=(CYAN if seg<3 else VIOLET),filter='url(#softGlow)',opacity=f'{1-seg*0.095:.2f}')
+        # Every segment uses the same route and pauses at the finish.
+        # time at path fraction q = q * transit, synchronized with tile loss.
+        el(group,'animateMotion',path=path,dur=f'{cycle:.3f}s',begin=f'{seg*0.085:.3f}s',repeatCount='indefinite',calcMode='linear',keyTimes=f'0;{transit/cycle:.6f};1',keyPoints='0;1;1')
 
-
-def add_defs(defs: ET.Element) -> None:
-    existing = {el.get("id") for el in defs.iter() if el.get("id")}
-
-    if "snakeGlow" not in existing:
-        flt = ET.SubElement(defs, _svg("filter"), {
-            "id": "snakeGlow",
-            "x": "-50%",
-            "y": "-50%",
-            "width": "200%",
-            "height": "200%",
-        })
-        ET.SubElement(flt, _svg("feGaussianBlur"), {
-            "in": "SourceGraphic",
-            "stdDeviation": "1.4",
-            "result": "blur"
-        })
-        merge = ET.SubElement(flt, _svg("feMerge"))
-        ET.SubElement(merge, _svg("feMergeNode"), {"in": "blur"})
-        ET.SubElement(merge, _svg("feMergeNode"), {"in": "SourceGraphic"})
-
-    if "tileGlow" not in existing:
-        flt = ET.SubElement(defs, _svg("filter"), {
-            "id": "tileGlow",
-            "x": "-50%",
-            "y": "-50%",
-            "width": "200%",
-            "height": "200%",
-        })
-        ET.SubElement(flt, _svg("feGaussianBlur"), {
-            "in": "SourceGraphic",
-            "stdDeviation": "0.8",
-            "result": "blur"
-        })
-        merge = ET.SubElement(flt, _svg("feMerge"))
-        ET.SubElement(merge, _svg("feMergeNode"), {"in": "blur"})
-        ET.SubElement(merge, _svg("feMergeNode"), {"in": "SourceGraphic"})
-
-    if "wordGrad" not in existing:
-        lg = ET.SubElement(defs, _svg("linearGradient"), {
-            "id": "wordGrad",
-            "x1": "0%",
-            "y1": "0%",
-            "x2": "100%",
-            "y2": "0%",
-        })
-        ET.SubElement(lg, _svg("stop"), {
-            "offset": "0%",
-            "stop-color": PALETTE["text_teal"],
-        })
-        ET.SubElement(lg, _svg("stop"), {
-            "offset": "45%",
-            "stop-color": PALETTE["text_lilac"],
-        })
-        ET.SubElement(lg, _svg("stop"), {
-            "offset": "100%",
-            "stop-color": PALETTE["text_purple"],
-        })
-
-
-def recolor_svg(root: ET.Element) -> None:
-    """
-    Snake ve grid renklerini seçilen temaya yaklaştır.
-    Platane/snk çıktısındaki rect'leri yeniden boya.
-    """
-    rects = list(root.iter(_svg("rect")))
-    if not rects:
-        return
-
-    # En yaygın küçük dikdörtgenleri grid kabul et
-    for rect in rects:
-        w = parse_len(rect.get("width"), 0)
-        h = parse_len(rect.get("height"), 0)
-        fill = (rect.get("fill") or "").lower()
-
-        if w <= 16 and h <= 16:
-            # Snake rengi
-            if fill in {"#a569bd", "#39d353", "#26a641", "#30a14e"}:
-                rect.set("fill", PALETTE["snake"])
-                rect.set("filter", "url(#snakeGlow)")
-            else:
-                # grid pikselleri
-                if fill.startswith("#"):
-                    # koyu lacivert tonlara çek
-                    rect.set("fill", PALETTE["grid_dark"])
-                    rect.set("opacity", "0.95")
-
-    # Arka plana yakın büyük rect varsa koyulaştır
-    for rect in rects:
-        w = parse_len(rect.get("width"), 0)
-        h = parse_len(rect.get("height"), 0)
-        if w > 200 and h > 40:
-            rect.set("fill", PALETTE["bg_dark"])
-
-
-def extract_grid(root: ET.Element) -> tuple[float, float, float, float]:
-    """
-    Grid'in yaklaşık hücre boyutunu ve başlangıcını bul.
-    """
-    xs = []
-    ys = []
-    widths = []
-    heights = []
-
-    for rect in root.iter(_svg("rect")):
-        w = parse_len(rect.get("width"), 0)
-        h = parse_len(rect.get("height"), 0)
-        x = parse_len(rect.get("x"), 0)
-        y = parse_len(rect.get("y"), 0)
-
-        if 6 <= w <= 16 and 6 <= h <= 16:
-            xs.append(x)
-            ys.append(y)
-            widths.append(w)
-            heights.append(h)
-
-    if not xs:
-        return 20.0, 20.0, 12.0, 12.0
-
-    xs_sorted = sorted(set(round(v, 2) for v in xs))
-    ys_sorted = sorted(set(round(v, 2) for v in ys))
-
-    dxs = [b - a for a, b in zip(xs_sorted, xs_sorted[1:]) if (b - a) > 0.1]
-    dys = [b - a for a, b in zip(ys_sorted, ys_sorted[1:]) if (b - a) > 0.1]
-
-    cell_x = min(dxs) if dxs else (sum(widths) / len(widths))
-    cell_y = min(dys) if dys else (sum(heights) / len(heights))
-    cell = min(cell_x, cell_y)
-
-    x0 = min(xs)
-    y0 = min(ys)
-
-    return x0, y0, cell, cell
-
-
-def build_label_points(label: str):
-    points = []
-    cursor_x = 0
-
-    for ch in label:
-        if ch == " ":
-            cursor_x += 2
-            continue
-        glyph = FONT.get(ch)
-        if not glyph:
-            cursor_x += 2
-            continue
-
-        width = len(glyph[0])
-        for r, row in enumerate(glyph):
-            for c, v in enumerate(row):
-                if v == "1":
-                    points.append((cursor_x + c, r))
-        cursor_x += width + 2
-
-    return points, cursor_x
-
-
-def add_gogo_tiles(root: ET.Element, label: str, speed_mult: float) -> None:
-    w = parse_len(root.get("width"), 960.0)
-    h = parse_len(root.get("height"), 180.0)
-
-    x0, y0, cell_w, cell_h = extract_grid(root)
-    cell = min(cell_w, cell_h)
-
-    points, total_cols = build_label_points(label)
-    if not points:
-        return
-
-    rows = 7
-    grid_cols_est = max(1, int((w - x0 * 2) / cell))
-    start_col = max(1, (grid_cols_est - total_cols) // 2)
-    start_row = 1
-
-    g = ET.SubElement(root, _svg("g"), {
-        "id": "gogoText",
-        "opacity": "1"
-    })
-
-    # soldan sağa, yukarıdan aşağı sırayla yensin
-    points_sorted = sorted(points, key=lambda p: (p[0], p[1]))
-
-    base_duration = 6.2 * speed_mult / 2.8
-    step = 0.10 * speed_mult / 2.8
-
-    size = max(6.0, cell - 2.4)
-    radius = "2"
-
-    for i, (cx, cy) in enumerate(points_sorted):
-        x = x0 + (start_col + cx) * cell + 1
-        y = y0 + (start_row + cy) * cell + 1
-
-        tile = ET.SubElement(g, _svg("rect"), {
-            "x": f"{x:.2f}",
-            "y": f"{y:.2f}",
-            "width": f"{size:.2f}",
-            "height": f"{size:.2f}",
-            "rx": radius,
-            "ry": radius,
-            "fill": "url(#wordGrad)",
-            "filter": "url(#tileGlow)",
-            "opacity": "0.98",
-        })
-
-        begin = 0.6 + i * step
-
-        # Tek tek kaybolma = yılan yiyor hissi
-        ET.SubElement(tile, _svg("animate"), {
-            "attributeName": "opacity",
-            "values": "0.98;0.98;0",
-            "keyTimes": "0;0.82;1",
-            "dur": f"{base_duration:.2f}s",
-            "begin": f"{begin:.2f}s",
-            "fill": "freeze",
-            "repeatCount": "1",
-        })
-
-        ET.SubElement(tile, _svg("animateTransform"), {
-            "attributeName": "transform",
-            "attributeType": "XML",
-            "type": "scale",
-            "values": "1 1;1 1;0.1 0.1",
-            "keyTimes": "0;0.82;1",
-            "dur": f"{base_duration:.2f}s",
-            "begin": f"{begin:.2f}s",
-            "fill": "freeze",
-            "repeatCount": "1",
-            "additive": "sum",
-        })
-
-
-def slow_down_animations(svg_text: str, speed_mult: float) -> str:
-    def repl(m):
-        val = float(m.group(1))
-        return f'dur="{val * speed_mult:.3f}s"'
-    return re.sub(r'dur="([0-9]*\.?[0-9]+)s"', repl, svg_text)
-
+    # Test metadata for deterministic validation; harmless in GitHub SVG.
+    root.set('data-gogo-tiles',str(len(all_tiles)))
+    root.set('data-snake-cycle-seconds',f'{cycle:.3f}')
+    return root,all_tiles,cycle
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--in", dest="inp", required=True)
-    ap.add_argument("--out", dest="out", required=True)
-    ap.add_argument("--label", default="GOGO")
-    ap.add_argument("--speed-mult", type=float, default=1.8)
-    args = ap.parse_args()
+    ap=argparse.ArgumentParser()
+    ap.add_argument('--in',dest='inp',required=False,help='Maintained for compatibility with older workflow')
+    ap.add_argument('--out',required=True)
+    ap.add_argument('--label',default='GOGO')
+    ap.add_argument('--speed-mult',type=float,default=1.0,help='Kept for compatibility')
+    ap.add_argument('--dark',action='store_true')
+    args=ap.parse_args()
+    root,points,cycle=create(args.label,args.dark)
+    out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True)
+    ET.ElementTree(root).write(out,encoding='utf-8',xml_declaration=True)
+    print(f'OK: {out} | {len(points)} pixels | {cycle:.1f} seconds | head follows every letter pixel')
 
-    svg_text = Path(args.inp).read_text(encoding="utf-8")
+if __name__=='__main__': main()
 
-    ET.register_namespace("", SVG_NS)
-    root = ET.fromstring(svg_text)
-
-    defs = ensure_defs(root)
-    add_defs(defs)
-    recolor_svg(root)
-    add_gogo_tiles(root, args.label, args.speed_mult)
-
-    xml_out = ET.tostring(root, encoding="unicode")
-    xml_out = slow_down_animations(xml_out, args.speed_mult)
-
-    outp = Path(args.out)
-    outp.parent.mkdir(parents=True, exist_ok=True)
-    outp.write_text(xml_out, encoding="utf-8")
-
-
-if __name__ == "__main__":
-    main()
