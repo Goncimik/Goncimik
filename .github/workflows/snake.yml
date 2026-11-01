@@ -3,7 +3,7 @@ name: Generate Snake with GOGO
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 permissions:
   contents: write
@@ -15,34 +15,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Generate snake SVGs
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          outputs: |
-            dist/snake.svg?color_snake=#58f1e3&color_dots=#0b1730,#11284a,#173763,#7b61ff,#b794f6
-            dist/snake-dark.svg?palette=github-dark&color_snake=#58f1e3&color_dots=#0b1730,#11284a,#173763,#7b61ff,#b794f6
-
-      - name: Post-process SVGs
+      - name: Generate GOGO snake SVGs
         run: |
-          python scripts/postprocess_snake.py \
-            --in dist/snake.svg \
-            --out out/gogo-snake.svg \
-            --label "GOGO" \
-            --speed-mult 1.8
-
-          python scripts/postprocess_snake.py \
-            --in dist/snake-dark.svg \
-            --out out/gogo-snake-dark.svg \
-            --label "GOGO" \
-            --speed-mult 1.8
-
+          python scripts/postprocess_snake.py --out out/gogo-snake.svg --label GOGO
+          python scripts/postprocess_snake.py --out out/gogo-snake-dark.svg --label GOGO --dark
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
@@ -50,3 +29,4 @@ jobs:
           build_dir: out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
