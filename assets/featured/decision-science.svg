@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="443" height="103" viewBox="0 0 443 103" role="img" aria-label="Decision Science — MCDM &amp; Decision Models">
+<rect x="0" y="0" width="443" height="103" rx="16" fill="#111D36"/>
+<g transform="translate(14 13) scale(.83)" stroke="#24D6CE" fill="none" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M2 17 L7 11 L10 14 L15 7 L19 10"/><path d="M15 7 H19 V11"/><path d="M3 21 V19 M7 21 V17 M11 21 V16 M15 21 V13 M19 21 V13"/></g>
+<text x="15" y="60" fill="#F5F7FC" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700">Decision Science</text>
+<text x="15" y="87" fill="#B7C3DA" font-family="Arial,Helvetica,sans-serif" font-size="12">MCDM &amp; Decision Models</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="443" height="103" viewBox="0 0 443 103" role="img" aria-label="Artificial Intelligence — AI &amp; Machine Learning">
+<rect x="0" y="0" width="443" height="103" rx="16" fill="#111D36"/>
+<g transform="translate(14 13) scale(.83)" stroke="#B58AFF" fill="none" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M12 6 C9 1 4 4 5 8 C1 9 2 14 5 15 C3 20 9 22 12 18"/><path d="M12 6 C15 1 20 4 19 8 C23 9 22 14 19 15 C21 20 15 22 12 18"/><path d="M12 4 V20 M8 9 H5 M16 9 H19 M8 15 H5 M16 15 H19"/></g>
+<text x="15" y="60" fill="#F5F7FC" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700">Artificial Intelligence</text>
+<text x="15" y="87" fill="#B7C3DA" font-family="Arial,Helvetica,sans-serif" font-size="12">AI &amp; Machine Learning</text>
+</svg>

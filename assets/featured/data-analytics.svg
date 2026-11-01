@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="443" height="103" viewBox="0 0 443 103" role="img" aria-label="Data Analytics — Statistical Analysis">
+<rect x="0" y="0" width="443" height="103" rx="16" fill="#111D36"/>
+<g transform="translate(14 13) scale(.83)" stroke="#58A6FF" fill="none" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5 V19 C4 23 20 23 20 19 V5"/><path d="M4 12 C4 16 20 16 20 12"/></g>
+<text x="15" y="60" fill="#F5F7FC" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700">Data Analytics</text>
+<text x="15" y="87" fill="#B7C3DA" font-family="Arial,Helvetica,sans-serif" font-size="12">Statistical Analysis</text>
+</svg>
