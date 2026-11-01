@@ -72,6 +72,44 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
 
 ---
 
+<!-- GOGO | FEATURED PROJECTS -->
+
+<h2>GOGO | Featured Projects</h2>
+
+<table>
+<tr>
+<td width="50%" bgcolor="#101C35">
+
+### 🩵 Decision Science
+MCDM & Decision Models
+
+</td>
+<td width="50%" bgcolor="#101C35">
+
+### 💜 Artificial Intelligence
+AI & Machine Learning
+
+</td>
+</tr>
+
+<tr>
+<td width="50%" bgcolor="#101C35">
+
+### 💙 Data Analytics
+Statistical Analysis
+
+</td>
+<td width="50%" bgcolor="#101C35">
+
+### 💜 Research Projects
+Scientific Applications
+
+</td>
+</tr>
+</table>
+
+<!-- END FEATURED PROJECTS -->
+
 ##  A Softer Side of Science
 
 - I find the geometry of my mind within lines of code.
