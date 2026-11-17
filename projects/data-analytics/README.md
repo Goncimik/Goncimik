@@ -1,7 +1,10 @@
+
 # Data Analytics
 
 *Statistical Analysis*
 
-<!-- Bu kategoriye daha sonra gerçek proje bağlantıları ve açıklamaları eklenecek. -->
+### Featured Projects
+
+- 📊 [AutoML | Price Prediction](https://github.com/Goncimik/AutoML-PricePrediction-Zero2end-MultiGroup)
 
 [← Back to GOGO profile](../../README.md)
