@@ -78,7 +78,7 @@ My work revolves around MCDM, AI, ML, and mathematical modeling.
 <div align="center">
   <a href="./projects/decision-science/README.md"><img src="./assets/featured/decision-science.svg" width="49%"></a>
   <a href="./projects/artificial-intelligence/README.md"><img src="./assets/featured/artificial-intelligence.svg" width="49%"></a>
-  <a href="https://github.com/Goncimik/AutoML-PricePrediction-Zero2end-MultiGroup"><img src="./assets/featured/data-analytics.svg" width="49%"></a>
+  <a href="./projects/data-analytics/README.md"><img src="./assets/featured/data-analytics.svg" width="49%"></a>
   <a href="./projects/research-projects/README.md"><img src="./assets/featured/research-projects.svg" width="49%"></a>
 </div>
 
