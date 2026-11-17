@@ -1,7 +1,12 @@
+
 # Artificial Intelligence
 
 *AI & Machine Learning*
 
-<!-- Bu kategoriye daha sonra gerçek proje bağlantıları ve açıklamaları eklenecek. -->
+### Featured Projects
+
+- 🤖 [FinSight AI Agent](https://github.com/Goncimik/FinSight-AI-Agent)
+- 🌺 [Begonya | QLoRA & RAG](https://github.com/Goncimik/Begonya-QLoRA-RAG)
 
 [← Back to GOGO profile](../../README.md)
+
