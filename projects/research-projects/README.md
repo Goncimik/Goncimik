@@ -11,7 +11,7 @@
 
 Henley & Passport güç endeksine göre ülkelerin çok kriterli karar verme ve kümeleme modeli ile analizi. (2025). *İşletme Araştırmaları Dergisi, 17*(2), 971–990. https://doi.org/10.20491/isarder.2025.2014
 
-Association rules analysis with Apriori algorithm and data visualization: Evidence from Borsa Istanbul. (2025). *Manisa Celal Bayar Üniversitesi Sosyal Bilimler Dergisi, 23*(4), 549–575. https://doi.org/10.18026/cbayarsos.1773973
+Association rules analysis with Apriori algorithm and data visualization: Evidence from Borsa Istanbul. (2025). *Manisa Celal Bayar Üniversitesi Sosyal Bilimler Dergisi, 23*(4), 549–575. [https://doi.org/10.18026/cbayarsos.1773973](https://dergipark.org.tr/tr/pub/cbayarsos/article/1773973)
 
 AHP-SAW ve AHP-ELECTRE yöntemleri ile yapı denetim firmalarının değerlendirmesi. (2016). *Yönetim Bilimleri Dergisi, 14*(27), 171–199. https://dergipark.org.tr/tr/pub/comuybd/article/533904
 
